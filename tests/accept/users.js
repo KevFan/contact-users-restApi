@@ -82,10 +82,10 @@ describe('Users', function() {
         .get('/users')
         .end(function (err, res) {
           // Before updating first user name - test true
-          res.body[0].name.first.should.be.eql('alison')
+          res.body[0].name.first.should.be.eql('alison');
           chai.request(url)
             // Update first user name
-            .put('/users/'+res.body[0]._id)
+            .put('/users/' + res.body[0]._id)
             .send({'name': 'test'})
             .end(function (error, response) {
               response.should.have.status(200);
@@ -94,6 +94,29 @@ describe('Users', function() {
               response.body.should.have.property('_id');
               response.body.name.should.eql('test');
               console.log(response.body);
+              done();
+            });
+        });
+    });
+  });
+
+  describe('DELETE users/:id', function () {
+    it('should delete a user', function (done) {
+      chai.request(url)
+        // Get list of users
+        .get('/users')
+        .end(function (err, res) {
+          console.log(res.body[0]);
+          // Before deleting first user - test true
+          res.body[0].location.street.should.be.eql('1097 the avenue');
+          chai.request(url)
+            // Delete the first user
+            .delete('/users/' + res.body[0]._id)
+            .end(function (error, response) {
+              response.should.have.status(200);
+              response.body.should.be.a('object');
+              response.body.should.not.have.property('_id');
+              response.body.should.eql({});
               done();
             });
         });
