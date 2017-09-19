@@ -88,4 +88,26 @@ router.put('/:id', function (req, res) {
   });
 });
 
+//Deletes a user
+router.delete('/:id', function (req, res) {
+  User.findByIdAndRemove({
+    _id: req.params.id
+  }, function (err, user) {
+    // If encountered an error in user creation
+    if (err) {
+      return res.status(500).json({
+        error: 'Error creating user' + err
+      });
+    }
+
+    // If no user is found, send error code
+    if (!user) {
+      return res.status(404).end();
+    }
+
+    // If user is successfully removed
+    res.status(200).send("User "+ user._id +" was deleted.");
+  });
+});
+
 module.exports = router;
