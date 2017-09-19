@@ -2,6 +2,9 @@ var User = require('../models/user');
 var express = require('express');
 var router = express.Router();
 
+// Node.js body parsing middleware - needed for creating/updating a user
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({ extended: true }));
 
 // GET /users
 // Get a list of users
@@ -35,6 +38,32 @@ router.get('/:id', function(req, res) {
 
     res.json(user);
   });
+});
+
+// POST /users
+// Creates a user
+router.post('/', function (req, res) {
+  // Create new user from request data
+  User.create(req.body, function (err, user) {
+      if (err) {
+        return res.status(500).json({
+          error: 'Error creating user' + err
+        });
+      }
+      res.json(user);
+  });
+
+  // Another way by creating user as variable and saving
+  // const new_user = new User(req.body);
+  // new_user.save(function (err, user) {
+  //   if (err) {
+  //     return res.status(500).json({
+  //       error: 'Error creating user' + err
+  //     });
+  //   }
+  //
+  //   res.json(user);
+  // });
 });
 
 module.exports = router;
