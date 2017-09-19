@@ -5,6 +5,7 @@ var router = express.Router();
 // Node.js body parsing middleware - needed for creating/updating a user
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 // GET /users
 // Get a list of users

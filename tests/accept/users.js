@@ -58,4 +58,20 @@ describe('Users', function() {
       });
     });
   });
+
+  describe('/POST users/', function () {
+    it('should create a single user', function (done) {
+      chai.request(url)
+        .post('/users')
+        .send({'name': 'test'})
+        .end(function (err, res) {
+          res.should.have.status(200);
+          expect(res.body).to.be.a('object');
+          res.body.should.have.property('name');
+          expect(res.body.name).to.be.a('string');
+          res.body.name.should.be.eql('test');
+          done();
+        });
+    });
+  });
 });
