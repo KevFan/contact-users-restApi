@@ -66,4 +66,26 @@ router.post('/', function (req, res) {
   // });
 });
 
+// PUT /users/:id
+// Updates a user
+router.put('/:id', function (req, res) {
+  // Find the first user matching :id to update
+  User.findOneAndUpdate({
+    _id: req.params.id}, req.body, {new: true}, function (err, user) {
+    // If encountered an error during updating user
+    if (err) {
+      return res.status(500).json({
+        error: 'Error creating user' + err
+      });
+    }
+
+    // If no user is found, send error code
+    if (!user) {
+      return res.status(404).end();
+    }
+
+    res.json(user);
+  });
+});
+
 module.exports = router;
