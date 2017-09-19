@@ -74,4 +74,29 @@ describe('Users', function() {
         });
     });
   });
+  
+  describe('PUT users/:id', function () {
+    it('should update a user', function (done) {
+      chai.request(url)
+        // Get list of users
+        .get('/users')
+        .end(function (err, res) {
+          // Before updating first user name - test true
+          res.body[0].name.first.should.be.eql('alison')
+          chai.request(url)
+            // Update first user name
+            .put('/users/'+res.body[0]._id)
+            .send({'name': 'test'})
+            .end(function (error, response) {
+              response.should.have.status(200);
+              response.body.should.be.a('object');
+              response.body.should.have.property('name');
+              response.body.should.have.property('_id');
+              response.body.name.should.eql('test');
+              console.log(response.body);
+              done();
+            });
+        });
+    });
+  });
 });
