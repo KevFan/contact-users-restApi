@@ -1,14 +1,14 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var cors = require('cors');
-var morgan = require('morgan');
-var path = require('path');
-var marked = require('marked');
-var fs = require('fs');
-var logger = require('winston');
-var userController = require('./controllers/users');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
+const path = require('path');
+const marked = require('marked');
+const fs = require('fs');
+const logger = require('winston');
+const userController = require('./controllers/users');
 
-var app = express();
+const app = express();
 
 // Add middleware
 app.use(cors());
@@ -17,16 +17,16 @@ app.use(morgan('dev'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res, err) { // eslint-disable-line no-unused-vars
-  var md = function(filename) {
-    var path = __dirname + "/" + filename;
-    var include = fs.readFileSync(path, 'utf8');
-    var html = marked(include);
+app.get('/', function(request, response, error) { // eslint-disable-line no-unused-vars
+  const md = function(filename) {
+    const path = __dirname + "/" + filename;
+    const include = fs.readFileSync(path, 'utf8');
+    const html = marked(include);
 
     return html;
   };
 
-  return res.render('index.ejs', {
+  return response.render('index.ejs', {
     "md": md
   });
 });

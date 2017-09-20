@@ -4,10 +4,10 @@
  * To seed, run `npm run-script seed`
  */
 
-var seeder = require('mongoose-seed');
-var logger = require('winston');
+const seeder = require('mongoose-seed');
+const logger = require('winston');
 
-var seed = function(cb) {
+const seed = function(cb) {
   seeder.connect('mongodb://localhost/users', function() {
 
     // Load the User model
@@ -19,13 +19,13 @@ var seed = function(cb) {
     seeder.clearModels(['User'], function() {
 
       // Populate from `users.json`
-      seeder.populateModels(require('./users.json'), function(err) {
-        if (err) {
-          logger.error('Error seeding', err);
+      seeder.populateModels(require('./users.json'), function(error) {
+        if (error) {
+          logger.error('Error seeding', error);
           if (require.main === module) {
             return process.exit(1);
           } else {
-            return cb(err);
+            return cb(error);
           }
         }
 

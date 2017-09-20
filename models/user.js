@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var User = mongoose.model('User', {
+const User = mongoose.model('User', {
   gender: String,
   name: Schema.Types.Mixed,
   location: Schema.Types.Mixed,
