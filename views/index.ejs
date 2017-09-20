@@ -1,18 +1,3 @@
-<!--<link rel="stylesheet" href="/css/github-markdown.css">-->
-<!--<style>-->
-<!--.markdown-body {-->
-  <!--box-sizing: border-box;-->
-  <!--min-width: 200px;-->
-  <!--max-width: 980px;-->
-  <!--margin: 0 auto;-->
-  <!--padding: 45px;-->
-<!--}-->
-<!--</style>-->
-
-<!--<article class="markdown-body">-->
-	<!--<%- md("API.md") %>-->
-<!--</article>-->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,27 +18,30 @@
     </h2>
     <div class="ui divider"></div>
 
-    <!--Search - doesnt work yet-->
-    <form class="ui center aligned fluid search basic segment form">
+    <section class="ui center aligned fluid search basic segment">
+        <!--Buttons for user-->
+        <button id="listAllButton" class="ui circular teal icon button">
+            <i class="users icon"></i>
+        </button>
+        <button class="ui circular olive icon button">
+            <i class="user icon"></i>
+        </button>
+        <button class="ui circular blue icon button">
+            <i class="plus icon"></i>
+        </button>
+        <!--Search - doesnt work yet-->
         <div class="ui left icon input field">
             <i class="search icon"></i>
             <input class="prompt" placeholder="Search Contacts" name="search">
         </div>
         <div class="aligned results"></div>
-    </form>
-
-    <!--Buttons to list options-->
-    <section class="ui center aligned middle aligned content">
-        <button id="listAllButton" class="ui basic green button">
-            <i class="users icon"></i>List All Users
-        </button>
     </section>
 </section>
 
-<div class="ui container">
+<section class="ui container">
     <div id="card-table" class="ui centered four doubling stackable cards">
     </div>
-</div>
+</section>
 </body>
 </html>
 
