@@ -1,6 +1,6 @@
-var User = require('../models/user');
-var express = require('express');
-var router = express.Router();
+const User = require('../models/user');
+const express = require('express');
+const router = express.Router();
 
 // Node.js body parsing middleware - needed for creating/updating a user
 const bodyParser = require('body-parser');
@@ -9,105 +9,105 @@ router.use(bodyParser.json());
 
 // GET /users
 // Get a list of users
-router.get('/', function(req, res) {
-  User.find({}, function(err, users) {
-    if (err) {
-      return res.status(500).json({
-        error: "Error listing users: " + err
+router.get('/', function(request, response) {
+  User.find({}, function(error, users) {
+    if (error) {
+      return response.status(500).json({
+        error: "error listing users: " + error
       });
     }
 
-    res.json(users);
+    response.json(users);
   });
 });
 
 // GET /users/:id
 // Get a user by ID
-router.get('/:id', function(req, res) {
+router.get('/:id', function(request, response) {
   User.findOne({
-    _id: req.params.id
-  }, function(err, user) {
-    if (err) {
-      return res.status(500).json({
-        error: "Error reading user: " + err
+    _id: request.params.id
+  }, function(error, user) {
+    if (error) {
+      return response.status(500).json({
+        error: "error reading user: " + error
       });
     }
 
     if (!user) {
-      return res.status(404).end();
+      return response.status(404).end();
     }
 
-    res.json(user);
+    response.json(user);
   });
 });
 
 // POST /users
 // Creates a user
-router.post('/', function (req, res) {
+router.post('/', function (request, response) {
   // Create new user from request data
-  User.create(req.body, function (err, user) {
-      if (err) {
-        return res.status(500).json({
-          error: 'Error creating user' + err
+  User.create(request.body, function (error, user) {
+      if (error) {
+        return response.status(500).json({
+          error: 'error creating user' + error
         });
       }
-      res.json(user);
+      response.json(user);
   });
 
   // Another way by creating user as variable and saving
-  // const new_user = new User(req.body);
-  // new_user.save(function (err, user) {
-  //   if (err) {
-  //     return res.status(500).json({
-  //       error: 'Error creating user' + err
+  // const new_user = new User(request.body);
+  // new_user.save(function (error, user) {
+  //   if (error) {
+  //     return response.status(500).json({
+  //       error: 'error creating user' + error
   //     });
   //   }
   //
-  //   res.json(user);
+  //   response.json(user);
   // });
 });
 
 // PUT /users/:id
 // Updates a user
-router.put('/:id', function (req, res) {
+router.put('/:id', function (request, response) {
   // Find the first user matching :id to update
   User.findOneAndUpdate({
-    _id: req.params.id}, req.body, {new: true}, function (err, user) {
+    _id: request.params.id}, request.body, {new: true}, function (error, user) {
     // If encountered an error during updating user
-    if (err) {
-      return res.status(500).json({
-        error: 'Error creating user' + err
+    if (error) {
+      return response.status(500).json({
+        error: 'error updating user' + error
       });
     }
 
     // If no user is found, send error code
     if (!user) {
-      return res.status(404).end();
+      return response.status(404).end();
     }
 
-    res.json(user);
+    response.json(user);
   });
 });
 
 //Deletes a user
-router.delete('/:id', function (req, res) {
+router.delete('/:id', function (request, response) {
   User.findByIdAndRemove({
-    _id: req.params.id
-  }, function (err, user) {
+    _id: request.params.id
+  }, function (error, user) {
     // If encountered an error in user creation
-    if (err) {
-      return res.status(500).json({
-        error: 'Error creating user' + err
+    if (error) {
+      return response.status(500).json({
+        error: 'error deleting user' + error
       });
     }
 
     // If no user is found, send error code
     if (!user) {
-      return res.status(404).end();
+      return response.status(404).end();
     }
 
     // If user is successfully removed
-    res.status(200).send("User "+ user._id +" was deleted.");
+    response.status(200).send("User "+ user._id +" was deleted.");
   });
 });
 
