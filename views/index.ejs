@@ -1,14 +1,97 @@
-<link rel="stylesheet" href="/css/github-markdown.css">
-<style>
-.markdown-body {
-  box-sizing: border-box;
-  min-width: 200px;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 45px;
-}
-</style>
+<!--<link rel="stylesheet" href="/css/github-markdown.css">-->
+<!--<style>-->
+<!--.markdown-body {-->
+  <!--box-sizing: border-box;-->
+  <!--min-width: 200px;-->
+  <!--max-width: 980px;-->
+  <!--margin: 0 auto;-->
+  <!--padding: 45px;-->
+<!--}-->
+<!--</style>-->
 
-<article class="markdown-body">
-	<%- md("API.md") %>
-</article>
+<!--<article class="markdown-body">-->
+	<!--<%- md("API.md") %>-->
+<!--</article>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Contact List </title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css" type="text/css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.js"></script>
+    <link rel="icon" type="img/png" href="https://www.shareicon.net/download/2015/08/24/90370_contacts_512x512.png" >
+</head>
+
+<body>
+<section class="ui container">
+    <h2 class="ui center aligned icon header">
+        <i class="circular users icon"></i>
+        Contact List
+    </h2>
+    <div class="ui divider"></div>
+
+    <!--Search - doesnt work yet-->
+    <form class="ui center aligned fluid search basic segment form">
+        <div class="ui left icon input field">
+            <i class="search icon"></i>
+            <input class="prompt" placeholder="Search Contacts" name="search">
+        </div>
+        <div class="aligned results"></div>
+    </form>
+
+    <!--Buttons to list options-->
+    <section class="ui center aligned middle aligned content">
+        <button id="listAllButton" class="ui basic green button">
+            <i class="users icon"></i>List All Users
+        </button>
+    </section>
+</section>
+
+<div class="ui container">
+    <div id="card-table" class="ui centered four doubling stackable cards">
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+  $('#listAllButton').click(function () {
+    $.ajax({
+      url: 'http://localhost:8000/users',
+      dataType: 'json',
+      type: 'GET',
+      success: function (json) {
+        cardListAllUsers(json);
+      },
+    });
+  });
+
+  function cardListAllUsers(contactList) {
+    for (let contact of contactList) {
+      $('#card-table').append(
+        '<div class="ui link card">' +
+            '<a class="content" href="/users/' + contact._id + '">' +
+                '<div class="center aligned content">' +
+                    '<img class="ui middle aligned circular small image" src="' + contact.picture.large + '">' +
+                '</div>' +
+                '<div class="center aligned header">' +
+                     contact.name.first + ' ' + contact.name.last +
+                '</div>' +
+            '</a>' +
+        '<div'
+      );
+    }
+  }
+  let content = [
+  { title: 'Does not work yet :('},
+  ];
+
+  $('.ui.search')
+    .search({
+      source: content
+    })
+  ;
+</script>
