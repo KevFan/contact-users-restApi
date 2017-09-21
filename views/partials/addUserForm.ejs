@@ -1,0 +1,157 @@
+<section class="ui modal" id="addUserModal"> <i class="close icon"></i>
+    <header class="header">Add new user</header>
+    <div class="content">
+        <form class="ui segment form">
+            <section class="three fields">
+                <div class="field">
+                    <label>Title</label>
+                    <div class="ui selection dropdown">
+                        <i class="genderless icon"></i>
+                        <input type="hidden" name="title">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Title</div>
+                        <div class="menu">
+                            <div class="item" data-value="miss">Miss</div>
+                            <div class="item" data-value="mr">Mr</div>
+                            <div class="item" data-value="mrs">Mrs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>First Name</label>
+                    <div class="ui input left icon">
+                        <i class="user icon"></i>
+                        <input placeholder="First Name" type="text" name="first">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Last Name</label>
+                    <div class="ui input left icon">
+                        <i class="user icon"></i>
+                        <input placeholder="Last Name" type="text" name="last">
+                    </div>
+                </div>
+            </section>
+            <section class="three fields">
+                <div class="field">
+                    <label>Gender</label>
+                    <div class="ui selection dropdown">
+                        <i class="genderless icon"></i>
+                        <input type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Gender</div>
+                        <div class="menu">
+                            <div class="item" data-value="Male">Male</div>
+                            <div class="item" data-value="Female">Female</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <div class="ui input left icon">
+                        <i class="mail icon"></i>
+                        <input placeholder="Email" type="text" name="email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Username</label>
+                    <div class="ui input left icon">
+                        <i class="address book icon"></i>
+                        <input placeholder="Username" type="text" name="username">
+                    </div>
+                </div>
+            </section>
+            <section class="two fields">
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui input left icon">
+                        <i class="lock icon"></i>
+                        <input placeholder="Password" type="password" name="password">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <div class="ui input left icon">
+                        <i class="lock icon"></i>
+                        <input placeholder="Confirm Password" type="password" name="confirmPassword">
+                    </div>
+                </div>
+            </section>
+
+            <section class="four fields">
+                <div class="field">
+                    <label>Date of Birth</label>
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input placeholder="Date of Birth" type="text" name="dob">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Phone Number</label>
+                    <div class="ui input left icon">
+                        <i class="volume control phone icon"></i>
+                        <input placeholder="Phone Number" type="text" name="phone">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Cell Phone Number</label>
+                    <div class="ui input left icon">
+                        <i class="mobile icon"></i>
+                        <input placeholder="Cell Phone No." type="text" name="cell">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>PPS</label>
+                    <div class="ui input left icon">
+                        <i class="hashtag icon"></i>
+                        <input placeholder="PPS" type="text" name="pps">
+                    </div>
+                </div>
+            </section>
+
+            <section class="ui accordion field">
+                <div class="title">
+                    <i class="icon dropdown"></i>
+                    Location
+                </div>
+                <section class="content fields">
+                    <div class="transition hidden content field">
+                        <label>Street</label>
+                        <div class="ui input left icon">
+                            <i class="home icon"></i>
+                            <input placeholder="Street" type="text" name="street">
+                        </div>
+                    </div>
+                    <div class="transition hidden content field">
+                        <label>City</label>
+                        <div class="ui input left icon">
+                            <i class="home icon"></i>
+                            <input placeholder="City" type="text" name="city">
+                        </div>
+                    </div>
+                    <div class="transition hidden content field">
+                        <label>State</label>
+                        <div class="ui input left icon">
+                            <i class="home icon"></i>
+                            <input placeholder="State" type="text" name="state">
+                        </div>
+                    </div>
+                    <div class="transition hidden content field">
+                        <label>ZIP</label>
+                        <div class="ui input left icon">
+                            <i class="hashtag icon"></i>
+                            <input placeholder="ZIP" type="text" name="zip">
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <button class="ui blue submit button"><i class="add user icon"></i>Submit</button>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</section>
