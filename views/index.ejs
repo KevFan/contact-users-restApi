@@ -50,33 +50,88 @@
 </html>
 
 <script>
-  $('#listAllButton').click(function () {
+  // Function to get Json list of all users and call cardListAllUsers to list as card table
+  function getAllUsers() {
     $.ajax({
-      url: 'http://localhost:8000/users',
+      url: 'users',
       dataType: 'json',
       type: 'GET',
       success: function (json) {
         cardListAllUsers(json);
       },
     });
-  });
+  }
 
+  // Function append the list of users in card style to DOM
   function cardListAllUsers(contactList) {
     for (let contact of contactList) {
       $('#card-table').append(
         '<div class="ui link card">' +
-            '<a class="content" href="/users/' + contact._id + '">' +
-                '<div class="center aligned content">' +
-                    '<img class="ui middle aligned circular small image" src="' + contact.picture.large + '">' +
-                '</div>' +
-                '<div class="center aligned header">' +
-                     contact.name.first + ' ' + contact.name.last +
-                '</div>' +
-            '</a>' +
+        '<a class="content" href="/users/' + contact._id + '">' +
+        '<div class="center aligned content">' +
+        '<img class="ui middle aligned circular small image" src="' + contact.picture.large + '">' +
+        '</div>' +
+        '<div class="center aligned header">' +
+        contact.name.first + ' ' + contact.name.last +
+        '</div>' +
+        '</a>' +
         '<div'
       );
     }
   }
+
+  // Button to list all users
+  $('#listAllButton').click(getAllUsers);
+
+  $('#addUserButton').click(function (event) {
+    event.preventDefault();
+    console.log('select_link clicked');
+    let user = {
+      gender: 'default',
+      name: {
+        title: 'default',
+        first: 'default',
+        last: 'default'
+      },
+      location: {
+        street: 'default',
+        city: 'default',
+        state: 'default',
+        zip: 0
+      },
+      email: 'default',
+      username: 'default',
+      password: 'default',
+      salt: 'default',
+      md5: 'default',
+      sha1: 'default',
+      sha256: 'default',
+      registered: 0,
+      dob: 0,
+      phone: 'default',
+      cell: 'default',
+      PPS: 'default',
+      picture: {
+        large: 'http://res.cloudinary.com/dv6skh7wa/image/upload/c_scale,w_128/v1500152762/Node%20Gym/login.png',
+        medium: 'http://res.cloudinary.com/dv6skh7wa/image/upload/c_scale,w_72/v1500152762/Node%20Gym/login.png',
+        thumbnail: 'http://res.cloudinary.com/dv6skh7wa/image/upload/c_scale,w_48/v1500152762/Node%20Gym/login.png'
+      }
+    };
+    user.name.first= $('#first').val();
+    $.ajax({
+      url: 'users',
+      data: JSON.stringify(user),
+      contentType: 'application/json',
+      type: 'POST',
+      success: function (user) {
+        console.log('success');
+        console.log(JSON.stringify(user));
+        $('#addUserModal')
+          .modal('hide');
+        getAllUsers();
+      },
+    });
+  });
 
   let content = [
   { title: 'Does not work yet :('},
