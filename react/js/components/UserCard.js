@@ -1,5 +1,8 @@
 import React from 'react';
 import SuperAgent from 'superagent'; // small progressive client-side HTTP request library
+import CustomModal from './CustomModal';
+import { Button } from 'semantic-ui-react';
+import UpdateUserForm from './Modal/UpdateUserForm';
 
 export default class UserCard extends React.Component {
 
@@ -31,9 +34,9 @@ export default class UserCard extends React.Component {
           </div>
         </section>
         <section className="center aligned content">
-          <button className="ui circular blue icon button">
-            <i className="edit icon" />
-          </button>
+          <CustomModal button={<Button circular color='blue' icon='edit'/>}
+                       form={<UpdateUserForm user={user}/>}
+                       header='Update User'/>
           <button onClick={this.deleteUserRequest.bind(this)} className="ui circular red icon button">
             <i className="delete icon" />
           </button>
