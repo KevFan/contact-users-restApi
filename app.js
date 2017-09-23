@@ -13,23 +13,23 @@ const app = express();
 // Add middleware
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(morgan('dev'));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response, error) { // eslint-disable-line no-unused-vars
-  const md = function(filename) {
-    const path = __dirname + "/" + filename;
-    const include = fs.readFileSync(path, 'utf8');
-    const html = marked(include);
-
-    return html;
-  };
-
-  return response.render('index.ejs', {
-    "md": md
-  });
-});
+// app.use(morgan('dev'));
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+//
+// app.get('/', function(request, response, error) { // eslint-disable-line no-unused-vars
+//   const md = function(filename) {
+//     const path = __dirname + "/" + filename;
+//     const include = fs.readFileSync(path, 'utf8');
+//     const html = marked(include);
+//
+//     return html;
+//   };
+//
+//   return response.render('index.ejs', {
+//     "md": md
+//   });
+// });
 
 // See the User Controller for `/users` routes
 app.use('/users', userController);
