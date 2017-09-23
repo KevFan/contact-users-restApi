@@ -6,7 +6,8 @@
   "repository": {},
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "superagent": "^3.5.2"
   },
   "scripts": {
     "start": "webpack --progress --watch",
