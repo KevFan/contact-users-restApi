@@ -39,7 +39,24 @@ export default class Layout extends React.Component {
    */
   getListOfUserCards() {
     return this.state.users.map((specificUser, userIndex) => {
-      return (<UserCard user={specificUser} index={userIndex} />);
+      return (<UserCard user={specificUser} index={userIndex} removeUser={this.removeUser.bind(this)} />);
+    });
+  }
+
+  /**
+   * Function to delete user from the user list by index
+   * @param userIndex
+   */
+  removeUser(userIndex) {
+    // Get the list of users from the object state and remove user by index
+    let listOfUsers = this.state.users;
+    if (userIndex > -1) {
+      listOfUsers.splice(userIndex, 1);
+    }
+
+    // Set the state to the new list of uses to refresh the DOM
+    this.setState({
+      users: listOfUsers,
     });
   }
 
