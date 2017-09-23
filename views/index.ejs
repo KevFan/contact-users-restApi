@@ -75,7 +75,15 @@
         contact.name.first + ' ' + contact.name.last +
         '</div>' +
         '</a>' +
-        '<div'
+        '<div' +
+        '<section class="center aligned content">' +
+            '<button class="ui circular blue icon button">' +
+                '<i class="edit icon"></i>' +
+            '</button>' +
+            '<button onclick="deleteUser(' + contact._id + ')" class="ui circular red icon button">' +
+                '<i class="delete icon"></i>' +
+            '</button>' +
+        '</section>'
       );
     }
   }
@@ -132,6 +140,16 @@
       },
     });
   });
+
+  function deleteUser(id) {
+    $.ajax({
+      type: "DELETE",
+      url: "users/" + id,
+      success: function (result) {
+        console.log(result);
+      }
+    });
+  }
 
   let content = [
   { title: 'Does not work yet :('},
