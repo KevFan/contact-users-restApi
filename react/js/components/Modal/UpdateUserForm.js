@@ -1,15 +1,55 @@
 import React from 'react';
+import SuperAgent from 'superagent'; // small progressive client-side HTTP request library
 
-export default class AddUserForm extends React.Component {
+export default class UpdateUserForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.user.name.title,
+      first: this.props.user.name.first,
+      last: this.props.user.name.last,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value =  target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    });
+
+  }
+
+  updateUser(event) {
+    SuperAgent
+      .put('/users/' + this.props.user._id)
+      .send({
+        name: { title: this.state.title, first: this.state.first, last: this.state.last },
+      })
+      .end((error, response) => {
+        if (error) {
+          console.log('UpdateUserForm - Error updating new user ');
+        } else {
+          console.log(response.body);
+        }
+      });
+  }
+
   render() {
+    let user = this.props.user;
     return (
-      <form className="ui segment form">
+      <form className="ui segment form" onSubmit={this.updateUser}>
         <section className="three fields">
           <div className="field">
             <label>Title</label>
             <div className="ui selection dropdown">
               <i className="genderless icon"/>
-              <input type="hidden" name="title" value={this.props.user.name.title}/>
+              <input type="hidden" name="title" placeholder={user.name.title} />
               <i className="dropdown icon"/>
               <div className="default text">Title</div>
               <div className="menu">
@@ -24,7 +64,7 @@ export default class AddUserForm extends React.Component {
             <label>First Name</label>
             <div className="ui input left icon">
               <i className="user icon"/>
-              <input id="first" placeholder="First Name" type="text" name="first" value={this.props.user.name.first}/>
+              <input id="first" placeholder={user.name.first} type="text" name="first" onChange={this.handleChange} />
             </div>
           </div>
 
@@ -32,7 +72,7 @@ export default class AddUserForm extends React.Component {
             <label>Last Name</label>
             <div className="ui input left icon">
               <i className="user icon"/>
-              <input placeholder="Last Name" type="text" name="last" value={this.props.user.name.last}/>
+              <input placeholder={user.name.last} type="text" name="last" onChange={this.handleChange} />
             </div>
           </div>
         </section>
