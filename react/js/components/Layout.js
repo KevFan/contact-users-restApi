@@ -39,7 +39,12 @@ export default class Layout extends React.Component {
    */
   getListOfUserCards() {
     return this.state.users.map((specificUser, userIndex) => {
-      return (<UserCard user={specificUser} index={userIndex} removeUser={this.removeUser.bind(this)} />);
+      return (<UserCard
+        user={specificUser}
+        index={userIndex}
+        removeUser={this.removeUser.bind(this)}
+        updateUserList={this.updateUserList.bind(this)}
+      />);
     });
   }
 
@@ -73,6 +78,24 @@ export default class Layout extends React.Component {
     this.setState({
       users: listOfUsers,
     });
+  }
+
+  /**
+   * Function to update user from the user list
+   * @param user User to add
+   * @param userIndex Index of user in array
+   */
+  updateUserList(userIndex, user) {
+    // Get the list of users from the object state and set user at index to new user
+    let listOfUsers = this.state.users;
+    listOfUsers[userIndex] = user;
+
+    // Set the state to the new list of uses to refresh the DOM
+    this.setState({
+      users: listOfUsers,
+    });
+
+    console.log('Layout - Update user called ');
   }
 
   render() {

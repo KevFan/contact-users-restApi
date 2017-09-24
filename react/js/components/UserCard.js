@@ -35,7 +35,7 @@ export default class UserCard extends React.Component {
         </section>
         <section className="center aligned content">
           <CustomModal button={<Button circular color='blue' icon='edit'/>}
-                       form={<UpdateUserForm user={user}/>}
+                       form={<UpdateUserForm updateUserList={this.props.updateUserList.bind(this)} user={user} userIndex={this.props.index}/>}
                        header='Update User'/>
           <button onClick={this.deleteUserRequest.bind(this)} className="ui circular red icon button">
             <i className="delete icon" />
