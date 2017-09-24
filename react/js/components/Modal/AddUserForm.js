@@ -1,7 +1,15 @@
 import React from 'react';
 import SuperAgent from 'superagent'; // small progressive client-side HTTP request library
 import { Form } from 'semantic-ui-react';
+
+/**
+ * Add User form Component
+ */
 export default class AddUserForm extends React.Component {
+  /**
+   * Constructor for the component with initial state that stores the user title, first and last name
+   * @param props Component Properties
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +22,10 @@ export default class AddUserForm extends React.Component {
     this.addUser = this.addUser.bind(this);
   }
 
+  /**
+   * Handles the change in state as user is typing in values
+   * @param event - Called in the onChange event
+   */
   handleChange(event) {
     const target = event.target;
     const value =  target.value;
@@ -25,6 +37,10 @@ export default class AddUserForm extends React.Component {
 
   }
 
+  /**
+   * Set state back to initial values
+   * @param event - Used after the post event happens to clear the form so another user can be added
+   */
   setStateBackToEmpty(event) {
     this.setState({
       title: '',
@@ -33,6 +49,11 @@ export default class AddUserForm extends React.Component {
     });
   }
 
+  /**
+   * Add user function - Uses SuperAgent to send a post request, with the state values to create user
+   * A default picture is also send in the post to keep the Layout design consistent
+   * @param event - Uses a onSubmit event by the form
+   */
   addUser(event) {
     SuperAgent
       .post('/users')
@@ -53,13 +74,20 @@ export default class AddUserForm extends React.Component {
       });
   }
 
+  /**
+   * Renders and return the AddUserForm component
+   * Form only takes in title, first and last name to show form concept
+   */
   render() {
     return (
       <Form onSubmit={this.addUser}>
         <Form.Group widths='equal'>
-          <Form.Input icon='genderless' placeholder='Title' name='title' value={this.state.title} onChange={this.handleChange} />
-          <Form.Input icon='user' placeholder='First Name' name='first' value={this.state.first}  onChange={this.handleChange} />
-          <Form.Input icon='user' placeholder='Last Name' name='last'  value={this.state.last} onChange={this.handleChange} />
+          <Form.Input icon='genderless' placeholder='Title' name='title'
+                      value={this.state.title} onChange={this.handleChange}/>
+          <Form.Input icon='user' placeholder='First Name' name='first'
+                      value={this.state.first} onChange={this.handleChange}/>
+          <Form.Input icon='user' placeholder='Last Name' name='last'
+                      value={this.state.last} onChange={this.handleChange}/>
         </Form.Group>
         <Form.Button content='Submit' circular color='blue' icon='save'/>
       </Form>

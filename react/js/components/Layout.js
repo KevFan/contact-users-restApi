@@ -3,9 +3,13 @@ import SuperAgent from 'superagent'; // small progressive client-side HTTP reque
 import UserCard from './UserCard';
 import Header from './Header';
 
+/**
+ * Main app component that controls the DOM layout, state and user data displayed
+ */
 export default class Layout extends React.Component {
   /**
-   * Constructor for Layout Component - sets state to contain an empty array of users
+   * Constructor for Layout Component
+   * Sets state to contain an empty array of users and search as empty string
    */
   constructor() {
     super();
@@ -16,7 +20,7 @@ export default class Layout extends React.Component {
   }
 
   /**
-   * React method that is invoked immediately after a component is mounted
+   * React method that is invoked immediately after the component is mounted
    * Uses SuperAgent to call /users endpoint to get list of users
    */
   componentDidMount() {
@@ -36,14 +40,20 @@ export default class Layout extends React.Component {
   /**
    * Return an array of UserCards - passing the user and userIndex as props to the UserCard
    * component
+   * The users displayed is filtered if searching contact
    * @returns {Array} Array of UserCards
    */
   getListOfUserCards() {
+    // Filter users by the search state - return users with first or last name matching the search
     let filteredContact = this.state.users.filter(
       (user) => {
-        return (user.name.first.indexOf(this.state.search) !== -1) || (user.name.last.indexOf(this.state.search) !== -1);
+        return (user.name.first.indexOf(this.state.search) !== -1)
+          || (user.name.last.indexOf(this.state.search) !== -1);
       }
     );
+
+    // Return an array of UserCard components while also passing is properties
+    // needed by the UserCard component
     return filteredContact.map((specificUser, userIndex) => {
       return (<UserCard
         user={specificUser}
@@ -56,7 +66,7 @@ export default class Layout extends React.Component {
 
   /**
    * Function to delete user from the user list by index
-   * @param userIndex
+   * @param userIndex Index of the user in the user list
    */
   removeUser(userIndex) {
     // Get the list of users from the object state and remove user by index
@@ -104,12 +114,20 @@ export default class Layout extends React.Component {
     console.log('Layout - Update user called ');
   }
 
+  /**
+   * Update search state with search value
+   * @param event OnChange event - updated on change
+   */
   updateSearch(event) {
     this.setState({
       search: event.target.value,
     });
   }
 
+  /**
+   * Renders the layout component - the main component that is returned to the index.html
+   * Composed of many sub components to build the layout
+   */
   render() {
     let listOfUserCards = this.getListOfUserCards();
 
@@ -120,8 +138,9 @@ export default class Layout extends React.Component {
                   addUserList={this.addUserList.bind(this)}
                   search={
                     <div className="ui left icon input field">
-                      <i className="search icon" />
-                      <input type='text' placeholder='Search Contacts' value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+                      <i className="search icon"/>
+                      <input type='text' placeholder='Search Contacts' value={this.state.search}
+                             onChange={this.updateSearch.bind(this)}/>
                     </div>}
           />
         </section>
