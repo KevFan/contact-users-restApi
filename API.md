@@ -203,4 +203,216 @@ Returns a list of Users
   });
   ```
 
+**Create User**
+----
+  Returns JSON data about a single user.
+
+* **URL**
+
+  `/users/`
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+   **Required:**
+
+   none
+
+* **Data Params**
+
+    ```
+      {
+      user : {
+        name : {
+          title: [string],
+          first: [string],
+          last: [string]
+        },
+      }
+    }
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "_id": "57b330de848a005e48f5de94",
+      "name": {
+        "title": "ms",
+        "first": "olivia",
+        "last": "young"
+      },
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error creating user" }
+    ```
+
+* **Sample Call:**
+
+  ```javascript
+  $.ajax({
+    url: "/users/",
+    dataType: "json",
+    data: {
+      user: {
+          name: {
+          title: "ms",
+          first: "olivia",
+          last: "young"
+        },
+      }
+    }
+    type : "POST",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+  ```
+
+  **Update User**
+----
+  Returns JSON data about a single user.
+
+* **URL**
+
+  `/users/:id`
+
+* **Method:**
+
+  `PUT`
+
+*  **URL Params**
+
+   **Required:**
+
+   `id=[string]`
+
+* **Data Params**
+
+    ```
+      {
+      user : {
+        name : {
+          title: [string],
+          first: [string],
+          last: [string]
+        },
+      }
+    }
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "_id": "57b330de848a005e48f5de94",
+      "name": {
+        "title": "ms",
+        "first": "susanne",
+        "last": "russell"
+      },
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error updating user" }
+    ```
+
+* **Sample Call:**
+
+  ```javascript
+  $.ajax({
+    url: "/users/",
+    dataType: "json",
+    data: {
+      user: {
+          name: {
+          title: "ms",
+          first: "olivia",
+          last: "young"
+        },
+      }
+    }
+    type : "POST",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+  ```
+
+  **Delete User**
+----
+  Returns JSON data about a single user.
+
+* **URL**
+
+  `/users/:id`
+
+* **Method:**
+
+  `DELETE`
+
+*  **URL Params**
+
+   **Required:**
+
+   `id=[string]`
+
+* **Data Params**
+  none
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {}
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error deleting user" }
+    ```
+
+* **Sample Call:**
+
+  ```javascript
+  $.ajax({
+    url: "/users/1",
+    dataType: "json",
+    type : "DELETE",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+  ```
+
 Inspired by https://gist.github.com/iros/3426278
