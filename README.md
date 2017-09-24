@@ -49,7 +49,7 @@ This part is only needed if you intend to make amends to the React part of the p
 	npm install
 	npm start
 
-Running these command would install the node modules dependant by React and allow you to do dev work on the React part of the part, and build the client.min.js
+Running these command would install the node modules dependant by React and allow you to do dev work on the React part of the application, and build the client.min.js
 
 
 ## Running tests
@@ -74,7 +74,7 @@ See [API.md](API.md) for details.
 ## Improvements
 This is the first time I've created and used RESTful API. I would imagine there would be many things where the project is not REST like, such as directory structuring.
 
-It is also the first time I've used REACT with semantic-ui, so I'm sure many of the react components and logic can be vastly improved, such as possibly using on class to handle the REST requests instead having them segregated.
+It is also the first time I've used REACT with semantic-ui, so I'm sure many of the react components and logic can be vastly improved, such as possibly using on class to handle all REST requests instead having them segregated.
 
 The UI has several issues that can be improved, but the overall project shows a concept of the UI functionality and how a REST Api can be consumed in conjuction with REACT to create a single page application. 
 
