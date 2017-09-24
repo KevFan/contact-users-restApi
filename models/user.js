@@ -17,7 +17,7 @@ const User = mongoose.model('User', {
   phone: String,
   cell: String,
   PPS: String,
-  picture: Schema.Types.Mixed
+  picture: Schema.Types.Mixed,
 });
 
 module.exports = User;
