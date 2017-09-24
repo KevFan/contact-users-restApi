@@ -60,13 +60,28 @@ export default class Layout extends React.Component {
     });
   }
 
+  /**
+   * Function to add user from the user list
+   * @param user User to add
+   */
+  addUserList(user) {
+    // Get the list of users from the object state and add user
+    let listOfUsers = this.state.users;
+    listOfUsers.push(user);
+
+    // Set the state to the new list of uses to refresh the DOM
+    this.setState({
+      users: listOfUsers,
+    });
+  }
+
   render() {
     const listOfUserCards = this.getListOfUserCards();
 
     return (
       <div>
         <section className='ui container'>
-          <Header/>
+          <Header addUserList={this.addUserList.bind(this)}/>
         </section>
         <section className="ui container">
           <div className="ui centered five doubling stackable cards">

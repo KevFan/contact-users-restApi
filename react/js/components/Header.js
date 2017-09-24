@@ -8,7 +8,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <Logo/>
-        <HeaderOptions/>
+        <HeaderOptions addUserList={this.props.addUserList.bind(this)}/>
       </div>
     );
   }

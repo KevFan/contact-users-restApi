@@ -18,7 +18,7 @@ export default class Options extends React.Component {
         {/*Add user button*/}
         <AddUserModal
           button={<Button circular color='blue' icon='plus'/>}
-          form={<AddUserForm/>}
+          form={<AddUserForm addUserList={this.props.addUserList.bind(this)} />}
           header='Add new user'/>
         {/*Search - doesnt work yet*/}
         <div className="ui left icon input field">
