@@ -7,19 +7,19 @@
 const seeder = require('mongoose-seed');
 const logger = require('winston');
 
-const seed = function(cb) {
-  seeder.connect('mongodb://localhost/users', function() {
+const seed = function (cb) {
+  seeder.connect('mongodb://localhost/users', function () {
 
     // Load the User model
     seeder.loadModels([
-      'models/user.js'
+      'models/user.js',
     ]);
 
     // Drop existing User documents
-    seeder.clearModels(['User'], function() {
+    seeder.clearModels(['User'], function () {
 
       // Populate from `users.json`
-      seeder.populateModels(require('./users.json'), function(error) {
+      seeder.populateModels(require('./users.json'), function (error) {
         if (error) {
           logger.error('Error seeding', error);
           if (require.main === module) {
@@ -43,7 +43,7 @@ const seed = function(cb) {
 
 // Run explicitly (e.g. not require'd)
 if (require.main === module) {
-  seed(function() {
+  seed(function () {
     logger.log('Seeding complete, exiting.');
   });
 }

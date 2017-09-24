@@ -9,11 +9,11 @@ router.use(bodyParser.json());
 
 // GET /users
 // Get a list of users
-router.get('/', function(request, response) {
-  User.find({}, function(error, users) {
+router.get('/', function (request, response) {
+  User.find({}, function (error, users) {
     if (error) {
       return response.status(500).json({
-        error: "error listing users: " + error
+        error: 'error listing users: ' + error,
       });
     }
 
@@ -23,13 +23,13 @@ router.get('/', function(request, response) {
 
 // GET /users/:id
 // Get a user by ID
-router.get('/:id', function(request, response) {
+router.get('/:id', function (request, response) {
   User.findOne({
-    _id: request.params.id
-  }, function(error, user) {
+    _id: request.params.id,
+  }, function (error, user) {
     if (error) {
       return response.status(500).json({
-        error: "error reading user: " + error
+        error: 'error reading user: ' + error,
       });
     }
 
@@ -46,12 +46,13 @@ router.get('/:id', function(request, response) {
 router.post('/', function (request, response) {
   // Create new user from request data
   User.create(request.body, function (error, user) {
-      if (error) {
-        return response.status(500).json({
-          error: 'error creating user' + error
-        });
-      }
-      response.json(user);
+    if (error) {
+      return response.status(500).json({
+        error: 'error creating user' + error,
+      });
+    }
+
+    response.json(user);
   });
 
   // Another way by creating user as variable and saving
@@ -72,11 +73,11 @@ router.post('/', function (request, response) {
 router.put('/:id', function (request, response) {
   // Find the first user matching :id to update
   User.findOneAndUpdate({
-    _id: request.params.id}, request.body, {new: true}, function (error, user) {
+    _id: request.params.id, }, request.body, { new: true }, function (error, user) {
     // If encountered an error during updating user
     if (error) {
       return response.status(500).json({
-        error: 'error updating user' + error
+        error: 'error updating user' + error,
       });
     }
 
@@ -92,12 +93,12 @@ router.put('/:id', function (request, response) {
 //Deletes a user
 router.delete('/:id', function (request, response) {
   User.findByIdAndRemove({
-    _id: request.params.id
+    _id: request.params.id,
   }, function (error, user) {
     // If encountered an error in user creation
     if (error) {
       return response.status(500).json({
-        error: 'error deleting user' + error
+        error: 'error deleting user' + error,
       });
     }
 
@@ -107,7 +108,7 @@ router.delete('/:id', function (request, response) {
     }
 
     // If user is successfully removed
-    response.status(200).send("User "+ user._id +" was deleted.");
+    response.status(200).send('User ' + user._id + ' was deleted.');
   });
 });
 
