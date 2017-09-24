@@ -1,5 +1,4 @@
-import React from 'react';
-import { Button } from 'semantic-ui-react';
+import React from 'react';import { Button } from 'semantic-ui-react';
 import AddUserModal from '../CustomModal';
 import AddUserForm from '../Modal/AddUserForm';
 
@@ -13,19 +12,20 @@ export default class Options extends React.Component {
    */
   render() {
     return (
-      <section className="ui center aligned fluid search basic segment">
+      <section className="ui center aligned basic segment">
         {/*Buttons for user*/}
-        <button className="ui circular teal icon button">
-          <i className="users icon" />
-        </button>
-        <button className="ui circular olive icon button">
-          <i className="user icon" />
-        </button>
         {/*Add user button*/}
         <AddUserModal
-          button={<Button circular color='blue' icon='plus'/>}
+          button={<Button circular color='blue' icon='add user'/>}
           form={<AddUserForm addUserList={this.props.addUserList.bind(this)} />}
-          header='Add new user'/>
+          header={{ content: 'Add new user' }}
+        />
+
+        <a href='https://github.com/KevFan/contact-users-restApi'>
+          <Button circular icon='github'/>
+        </a>
+
+
         {/*Search - is passed in as property*/}
         {this.props.search}
       </section>

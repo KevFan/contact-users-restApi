@@ -89,7 +89,7 @@ export default class AddUserForm extends React.Component {
           <Form.Input icon='user' placeholder='Last Name' name='last'
                       value={this.state.last} onChange={this.handleChange}/>
         </Form.Group>
-        <Form.Button content='Submit' circular color='blue' icon='save'/>
+        <Form.Button content='Add User' circular color='blue' icon='add user' floated='right'/>
       </Form>
     );
   }
