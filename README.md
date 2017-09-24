@@ -40,12 +40,26 @@ To get started, you'll need to have the following requirements installed
 
 The project can then be viewed on <http://localhost:8000/>
 
+## Running React 
+This part is only needed if you intend to make amends to the React part of the project as the client.min.js is already included.
+	
+	# Ensure you have the getting started section completed and running in a shell
+	# Open another shell from the project directory:
+	cd react
+	npm install
+	npm start
+
+Running these command would install the node modules dependant by React and allow you to do dev work on the React part of the part, and build the client.min.js
+
+
 ## Running tests
 
 Testing was completed using mocha. Endpoints of the API for PUT, POST, GET, DELETE requests are tested. 
 To run tests enter:
 
 `npm test`
+
+![Image of Mochawesome](http://res.cloudinary.com/dv6skh7wa/image/upload/v1506286218/CaptureMochawe_lk2yib.png)
 
 Mochawesome test reports are generated and included which can be found in the project directory:
 
@@ -60,7 +74,7 @@ See [API.md](API.md) for details.
 ## Improvements
 This is the first time I've created and used RESTful API. I would imagine there would be many things where the project is not REST like, such as directory structuring.
 
-It is also the first time I've used REACT with semantic-ui, so I'm sure many of the react components and logic can be vastly improved.
+It is also the first time I've used REACT with semantic-ui, so I'm sure many of the react components and logic can be vastly improved, such as possibly using on class to handle the REST requests instead having them segregated.
 
 The UI has several issues that can be improved, but the overall project shows a concept of the UI functionality and how a REST Api can be consumed in conjuction with REACT to create a single page application. 
 

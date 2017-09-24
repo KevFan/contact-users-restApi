@@ -283,7 +283,7 @@ Returns a list of Users
   });
   ```
 
-  **Update User**
+**Update User**
 ----
   Returns JSON data about a single user.
 
@@ -363,7 +363,7 @@ Returns a list of Users
   });
   ```
 
-  **Delete User**
+**Delete User**
 ----
   Returns JSON data about a single user.
 
