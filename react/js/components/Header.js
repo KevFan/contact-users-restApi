@@ -8,7 +8,11 @@ export default class Header extends React.Component {
     return (
       <div>
         <Logo/>
-        <HeaderOptions addUserList={this.props.addUserList.bind(this)}/>
+        <HeaderOptions
+          users={this.props.users}
+          addUserList={this.props.addUserList.bind(this)}
+          search={this.props.search}
+        />
       </div>
     );
   }

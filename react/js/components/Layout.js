@@ -11,6 +11,7 @@ export default class Layout extends React.Component {
     super();
     this.state = {
       users: [],
+      search: '',
     };
   }
 
@@ -38,7 +39,12 @@ export default class Layout extends React.Component {
    * @returns {Array} Array of UserCards
    */
   getListOfUserCards() {
-    return this.state.users.map((specificUser, userIndex) => {
+    let filteredContact = this.state.users.filter(
+      (user) => {
+        return (user.name.first.indexOf(this.state.search) !== -1) || (user.name.last.indexOf(this.state.search) !== -1);
+      }
+    );
+    return filteredContact.map((specificUser, userIndex) => {
       return (<UserCard
         user={specificUser}
         index={userIndex}
@@ -98,13 +104,26 @@ export default class Layout extends React.Component {
     console.log('Layout - Update user called ');
   }
 
+  updateSearch(event) {
+    this.setState({
+      search: event.target.value,
+    });
+  }
+
   render() {
-    const listOfUserCards = this.getListOfUserCards();
+    let listOfUserCards = this.getListOfUserCards();
 
     return (
       <div>
         <section className='ui container'>
-          <Header addUserList={this.addUserList.bind(this)}/>
+          <Header users={this.state.users}
+                  addUserList={this.addUserList.bind(this)}
+                  search={
+                    <div className="ui left icon input field">
+                      <i className="search icon" />
+                      <input type='text' placeholder='Search Contacts' value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+                    </div>}
+          />
         </section>
         <section className="ui container">
           <div className="ui centered five doubling stackable cards">
